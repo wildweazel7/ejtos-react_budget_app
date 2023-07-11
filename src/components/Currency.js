@@ -1,25 +1,28 @@
 import React, { useContext } from 'react';
 import { AppContext } from '../context/AppContext';
-import Dropdown from 'react-bootstrap/Dropdown';
 
 const Currency = (props) => {
-    const { currency } = useContext(AppContext);
-    return (
-        <div className='alert alert-success' style={{padding: 10,backgroundColor: '#99ff99'}}>
-     <Dropdown>
-      <Dropdown.Toggle variant="error" id="dropdown-basic" style={{backgroundColor: '#99ff99', border: 'none'}}>
-      Currency ({currency})
-      </Dropdown.Toggle>
- 
-      <Dropdown.Menu style={{backgroundColor: '#99ff99'}}>
-        <Dropdown.Item href="#/action-1">$ Dollar</Dropdown.Item>
-        <Dropdown.Item href="#/action-2">£ Pound</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">€ Euro</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">₹ Ruppee</Dropdown.Item>
-      </Dropdown.Menu>
-    </Dropdown>
+    const {  dispatch } = useContext(AppContext);
+    
+const setCurrency = (mValue) => {
+        console.log("VAL:"+mValue);
+        dispatch({
+            type: 'CHG_CURRENCY',
+            payload: mValue
+        });
+        
+    }
 
-      </div>
+    return (  
+    <div className='alert alert-success' style={{padding: 10,backgroundColor: '#99ff99'}}>
+                        Currency<select  style={{padding: 7,backgroundColor: '#99ff99', border: 'none'}} className="custom-select" id="inputCur" onChange={(event) => setCurrency(event.target.value)}>
+                            <option value="$" name="dollar">$ Dollar</option>
+                            <option value="£" name="pound">£ Pound</option>
+                            <option value="€" name="euro">€ Euro</option>
+                            <option value="₹" name="euro">₹ Ruppee</option>
+                         </select>
+    </div>
       );
+       
 }
 export default Currency;
