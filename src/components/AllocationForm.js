@@ -60,6 +60,8 @@ const AllocationForm = (props) => {
                   </select>
 
                     <input
+                        keyboardType='numeric'
+                        class="quantity"
                         required='required'
                         type='number'
                         id='cost'
